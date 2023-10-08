@@ -1,17 +1,80 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
-
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        int[] a=round(new int[]{20, 50, 63, 51, 88});
+        for(int element:a){
+            System.out.println(element);
         }
+
+        int b[]=insufficient(new int[]{13,40,41,66});
+        for(int element:b){
+            System.out.println(element);
+        }
+
+        float c=average(new int[]{13,40,41,66});
+        System.out.println(c);
+
+        int d=maximRounded(new int[]{20, 50, 63, 51, 88});
+        System.out.println(d);
+
+    }
+
+    public static int[] round(int[] grades) {
+        int[] rounded= new int[grades.length];
+        int index=0;
+        for(int i=0;i < grades.length;i++){
+            if (grades[i]<38){
+                rounded[index]=grades[i];
+                index++;
+                continue;
+            }
+            int nextMultip=grades[i];
+            while (nextMultip%5!=0){
+                nextMultip++;
+            }
+            if (nextMultip-grades[i]<3) {
+                rounded[index] = nextMultip;
+                index++;
+            }else {
+                rounded[index] = grades[i];
+                index++;
+            }
+        }
+        return rounded;
+    }
+    public static int[] insufficient(int[] grades){
+        int [] insuff=new int[grades.length];
+        int index=0;
+        for(int i=0;i < grades.length;i++) {
+            if (grades[i]<40){
+                insuff[index]=grades[i];
+                index++;
+            }
+        }
+        return insuff;
+    }
+
+    public static float average(int[] grades){
+        int sum=0;
+        int nr=0;
+        float aver=0;
+        for(int i=0;i < grades.length;i++){
+            sum=sum+grades[i];
+            nr++;
+        }
+        aver=sum/nr;
+    return aver;
+    }
+
+    public static int maximRounded(int[] grades){
+        int[] rounded= new int[grades.length];
+        rounded=round(grades);
+        int maxim=rounded[0];
+        for(int i=0;i < rounded.length;i++){
+            if(maxim<rounded[i]){
+                maxim=rounded[i];
+            }
+        }
+        return maxim;
     }
 }
